@@ -53,6 +53,16 @@ namespace Phase2L1GMT {
   // ===========================================================================
   inline bool Tauto3Mu::GetTau3Mu(std::vector<l1t::TrackerMuon> &trkMus,
                                   std::vector<ConvertedTTTrack> &convertedTracks) {
+    if (trkMus.size() == 0)
+      {
+	std::cout << "Found 0 tracker muons. Cannot find tau->3mu candidates"<<std::endl;
+        return true;
+      }
+    else
+      {
+	std::cout << "Found "<<trkMus.size()<<"  tracker-muons. Will find the 3mu combinations"<<std::endl;
+      }
+    
     Find3MuComb(trkMus);
     return true;
   }  // -----  end of function Tauto3Mu::GetTau3Mu  -----

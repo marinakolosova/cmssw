@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: step1 --processName=L1REPR --conditions auto:phase2_realistic_T15 -n 10 --era Phase2C9 --eventcontent FEVTDEBUGHLT -s RAW2DIGI,L1 --datatier FEVTDEBUGHLT --geometry Extended2026D49 --fileout file:/tmp/step1_Reprocess_L1.root --no_exec --nThreads 8 --python step1_L1_Reprocess.py --filein das:/MinBias_TuneCP5_14TeV-pythia8/Phase2HLTTDRSummer20L1T-PU200_111X_mcRun4_realistic_T15_v1-v2/FEVT --customise L1Trigger/Configuration/customisePhase2.addHcalTriggerPrimitives --no_exec
+# with command line options: step1 --processName=L1REPR --conditions auto:phase2_realistic_T15 -n 10 --era Phase2C9 --eventcontent FEVTDEBUGHLT -s RAW2DIGI,L1 --datatier F1;95;0cEVTDEBUGHLT --geometry Extended2026D49 --fileout file:/tmp/step1_Reprocess_L1.root --no_exec --nThreads 8 --python step1_L1_Reprocess.py --filein das:/MinBias_TuneCP5_14TeV-pythia8/Phase2HLTTDRSummer20L1T-PU200_111X_mcRun4_realistic_T15_v1-v2/FEVT --customise L1Trigger/Configuration/customisePhase2.addHcalTriggerPrimitives --no_exec
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Phase2C9_cff import Phase2C9
@@ -23,56 +23,34 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 #process.load('L1Trigger.L1TMuonTPS.L1TTrackerPlusStubs_cfi') # Adding MuonTPS
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(5000),
+    input = cms.untracked.int32(3),
     output = cms.optional.untracked.allowed(cms.int32,cms.PSet)
 )
-process.MessageLogger.cerr.FwkReport.reportEvery = 100
+process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
 # Input source
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/00006128-B6E9-164F-86F0-A650029BF556.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/008F2D30-9CB9-3149-BACC-44E377BD4339.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/01DCAE84-9A84-BA46-A3C9-911FE21B772B.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/03354C18-02BB-BC4E-AC41-929415ACBA10.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/04B5B609-AE07-2845-A953-C7381AFA4BA3.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/053B903A-B414-B34C-8A0C-576E52ED40BB.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0741BA70-FB5D-5F45-83BA-F21E36F4A6A0.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/07D0DC19-75A6-EF43-86AC-500087D5F044.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0A246F64-6D90-FB4A-A363-024F172686F1.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0A597E05-0A6F-CC4B-B091-6B48314BE330.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0AB846BB-0972-A046-BC9A-C571E6BAC3C5.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0BB165E7-1A72-BF45-A0BC-DFC90CA0087F.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0CFC45A2-D468-B846-A203-777B97A43120.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0D0AA151-EA54-0C42-9E2B-0D9A6430596F.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0D2CB354-3047-8C41-89ED-25662E1AC832.root',
-'/store/mc/Phase2HLTTDRWinter20DIGI/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/NoPU_pilot_110X_mcRun4_realistic_v3-v2/20000/0E673C7A-1C1F-4948-9C05-5DD69FBB4098.root'
-
-
-
-
-
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/0398918A-BD7A-6C4D-8696-6F061FF08845.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/045A4B0F-D7AA-1C44-B097-F700F9C11881.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/09E56A06-CFFA-2A46-90BA-2CF4F6C7BDC8.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/0ACCD724-9CA3-FA4D-B85B-70C5A999E089.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/0E408E15-DCEB-5546-BD16-0B45D2F5D590.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/12A09A17-6734-1244-B789-A6A79829E12B.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/12E755CC-059B-D94D-B2C0-57C2C189F4DE.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/1946CACB-2903-2649-B33C-66FB7D7F3ACC.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/19667D5B-49B9-EF45-A911-EB17EAA1E67D.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2012FA01-916D-6C4B-8CD1-2D86920B06ED.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/234CE519-87C5-DB44-9457-E679AD595E75.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/23B4B535-51AB-9945-8BD9-9CB011277E28.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2873F537-D329-8840-8A51-A452BACB8F66.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2CA0BA6A-B735-C54C-8D5F-BA6A0AFE3D37.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2D5E99B7-5876-3B44-9253-4E1B22DB02B0.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2EFCE00C-524C-F642-B951-2825189FE8A7.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/2FFD6E4F-C824-B140-B285-A65983FF54FF.root',
-#'/store/mc/Phase2HLTTDRWinter20DIGI/DoubleMuon_gun_FlatPt-1To100/GEN-SIM-DIGI-RAW/NoPU_110X_mcRun4_realistic_v3-v2/30000/330FA1A0-652B-AA49-B0C9-729965D8A0E4.root'
-
-
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/0049E1A3-5419-A842-B547-C8D0614FB5DB.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/0065934B-58A7-F841-851A-C37A3213387B.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/00A87F28-CB5B-D645-8AB6-BE75DF907B84.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/01866908-2916-EC46-86F2-FB6A25C6E086.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/02D8EF31-D7A9-6347-B667-48540B8B31E7.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/03DD7C0A-2E72-1E4B-8B85-38981A788A0C.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/05408FD4-875F-A249-BCCF-17EE88510376.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/0551F50A-0551-DA4C-B231-EC3EEE56CA71.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/05CE64A3-D52D-5643-B4AF-9BD085031661.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/064A41B6-CB98-5D4B-A198-4E1129A8C332.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/065829E0-A646-2846-8A3E-372C0421C178.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/065D5634-CB70-824A-B0F9-CC5F35036411.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/06ED6505-E897-1D4B-922A-35A629A5F8BB.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/07297664-7761-6B47-9F38-DA1B15868E26.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/083CF89B-7109-6545-9C79-6ECD6B50D30F.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/08CF97DD-0618-084F-ACD0-978CC59069D2.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/08FFC260-C76C-B14D-811A-F6BED73FB6C9.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/094DF951-601C-8448-9AC7-9F73D9E6650A.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/0A421F2B-6B0E-0145-8F80-5AC46957A32A.root',
+        '/store/mc/Phase2HLTTDRWinter20DIGI/DsToTauTo3Mu_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_withNewMB_110X_mcRun4_realistic_v3_ext1-v1/50000/0C17EF66-41EA-724C-9E20-8094B7384BB9.root',
     ),
     secondaryFileNames = cms.untracked.vstring()
 )
@@ -111,7 +89,6 @@ process.configurationMetadata = cms.untracked.PSet(
 )
 
 # Output definition
-
 process.out = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('test.root'),
     outputCommands = cms.untracked.vstring(
@@ -155,10 +132,7 @@ process.dtTriggerPhase2PrimitiveDigis.dump = False
 process.dtTriggerPhase2PrimitiveDigis.scenario = 0
 
 
-
-
 #process.schedule = cms.Schedule(process.L1TrackTrigger_step,process.pL1TMuonTPS,process.endjob_step,process.e) # Adding MuonTPS
-
 
 process.stubs = cms.EDProducer("Phase2L1TGMTStubProducer",
     verbose = cms.int32(0),
@@ -186,21 +160,16 @@ process.stubs = cms.EDProducer("Phase2L1TGMTStubProducer",
         phiLSB             = cms.double(0.00076660156*32),
         phiBDivider        = cms.int32(1),
         etaLSB             = cms.double(7.68334e-04*32), 
-        eta_1              = cms.vint32(-1503/32,-1446/32,-1387/32,-1327/32,-1266/32,-1194/32,-1125/32,-985/32,-916/32,-839/32,-752/32,-670/32,-582/32,-489/32,-315/32,-213/32,-115/32,-49/32,49/32, 115/32, 213/32, 315/32, 489/32, 582/32, 670/32, 752/32, 839/32, 916/32, 985/32, 1125/32, 1194/32, 1266/32, 1327/32, 1387/32, 1446/32, 1503),
-        eta_2              = cms.vint32(-1334/32,-1279/32,-1227/32,-1168/32,-1109/32,-1044/32,-982/32,-861/32,-793/32,-720/32,-648/32,-577/32,-496/32,-425/32,-268/32,-185/32,-97/32,-51/32,51/32, 97/32, 185/32, 268/32, 425/32, 496/32, 577/32, 648/32, 720/32, 793/32, 861/32, 982/32, 1044/32, 1109/32, 1168/32, 1227/32, 1279/32, 1334),
-        eta_3              = cms.vint32(-1148/32,-1110/32,-1051/32,-1004/32,-947/32,-895/32,-839/32,-728/32,-668/32,-608/32,-546/32,-485/32,-425/32,-366/32,-222/32,-155/32,-87/32,-40/32,40/32, 87/32, 155/32, 222/32, 366/32, 425/32, 485/32, 546/32, 608/32, 668/32, 728/32, 839/32, 895/32, 947/32, 1004/32, 1051/32, 1110/32, 1148),
-        coarseEta_1        = cms.vint32(0/32,758/32,1336/32),
-        coarseEta_2        = cms.vint32(0/32,653/32,1168/32),
-        coarseEta_3        = cms.vint32(0/32,552/32,1001/32),
-        coarseEta_4        = cms.vint32(0/32,478/32,878/32),
-        phiOffset          = cms.vint32(75/32,-30/32,+26/32,0)    
-   )
-
+        eta_1              = cms.vint32(int(-1503/32), int(-1446/32), int(-1387/32), int(-1327/32), int(-1266/32), int(-1194/32), int(-1125/32), int(-985/32), int(-916/32), int(-839/32), int(-752/32), int(-670/32), int(-582/32), int(-489/32), int(-315/32), int(-213/32), int(-115/32), int(-49/32), int(49/32), int(115/32), int(213/32), int(315/32), int(489/32), int(582/32), int(670/32), int(752/32), int(839/32), int(916/32), int(985/32), int(1125/32), int(1194/32), int(1266/32), int(1327/32), int(1387/32), int(1446/32), int(1503)),
+        eta_2              = cms.vint32(int(-1334/32), int(-1279/32), int(-1227/32), int(-1168/32), int(-1109/32), int(-1044/32), int(-982/32), int(-861/32), int(-793/32), int(-720/32), int(-648/32), int(-577/32), int(-496/32), int(-425/32), int(-268/32), int(-185/32), int(-97/32), int(-51/32), int(51/32), int(97/32), int(185/32), int(268/32), int(425/32), int(496/32), int(577/32), int(648/32), int(720/32), int(793/32), int(861/32), int(982/32), int(1044/32), int(1109/32), int(1168/32), int(1227/32), int(1279/32), int(1334)),
+        eta_3              = cms.vint32(int(-1148/32), int(-1110/32), int(-1051/32), int(-1004/32), int(-947/32), int(-895/32), int(-839/32), int(-728/32), int(-668/32), int(-608/32), int(-546/32), int(-485/32), int(-425/32), int(-366/32), int(-222/32), int(-155/32), int(-87/32), int(-40/32), int(40/32), int(87/32), int(155/32), int(222/32), int(366/32), int(425/32), int(485/32), int(546/32), int(608/32), int(668/32), int(728/32), int(839/32), int(895/32), int(947/32), int(1004/32), int(1051/32), int(1110/32), int(1148)),
+        coarseEta_1        = cms.vint32(int(0/32), int(758/32), int(1336/32)),
+        coarseEta_2        = cms.vint32(int(0/32), int(653/32), int(1168/32)),
+        coarseEta_3        = cms.vint32(int(0/32), int(552/32), int(1001/32)),
+        coarseEta_4        = cms.vint32(int(0/32), int(478/32), int(878/32)),
+        phiOffset          = cms.vint32(int(75/32),int(-30/32), int(+26/32),int(0))    
+    )
 )
-
-
-
-
 
 process.prod = cms.EDProducer('Phase2L1TGMTProducer',
                               srcTracks = cms.InputTag("TTTracksFromTrackletEmulation:Level1TTTracks"),
@@ -208,15 +177,43 @@ process.prod = cms.EDProducer('Phase2L1TGMTProducer',
                               srcBMTF   = cms.InputTag('simBmtfDigis','BMTF'),
                               srcEMTF   = cms.InputTag('simEmtfDigis','EMTF'),
                               srcOMTF   = cms.InputTag('simOmtfDigis','OMTF'),
+                              
+                              minTrackStubs = cms.int32(4),
+                              
                               muonBXMin = cms.int32(0),
                               muonBXMax = cms.int32(0),
+                              
+                              verbose   = cms.int32(1),
+                              # -------------------------- added by marina - start
+                              trackConverter  = cms.PSet(
+                                  verbose = cms.int32(1)
+                              ),
+                              roiTrackAssociator  = cms.PSet(
+                                  verbose=cms.int32(1)
+                              ),
+                              trackMatching  = cms.PSet(
+                                  verbose=cms.int32(1)
+                              ),
+                              isolation  = cms.PSet(
+                                  AbsIsoThresholdL = cms.int32(0),
+                                  AbsIsoThresholdM = cms.int32(0),
+                                  AbsIsoThresholdT = cms.int32(0),
+                                  RelIsoThresholdL = cms.double(0),
+                                  RelIsoThresholdM = cms.double(0),
+                                  RelIsoThresholdT = cms.double(0),
+                                  verbose       = cms.int32(0),
+                                  IsodumpForHLS = cms.int32(0),
+                              ),
+                              tauto3mu = cms.PSet(),
+                              # ------------------------- added by marina - end
+                              # are the following needed?
                               IsoThreshold1 = cms.int32(0),
                               IsoThreshold2 = cms.int32(0),
                               IsoThreshold3 = cms.int32(0),
                               IsoThreshold4 = cms.int32(0),
-                              verbose       = cms.int32(0),
                               IsodumpForHLS = cms.int32(0)
-                             )
+                          )
+
 process.testpath=cms.Path(process.CalibratedDigis*process.dtTriggerPhase2PrimitiveDigis*process.stubs*process.prod)
 #process.testpath=cms.Path(process.CalibratedDigis*process.dtTriggerPhase2PrimitiveDigis)
 process.schedule = cms.Schedule(process.L1TrackTrigger_step,process.testpath,process.endjob_step,process.e)
