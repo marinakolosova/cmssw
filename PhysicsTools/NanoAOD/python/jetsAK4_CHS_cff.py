@@ -319,7 +319,7 @@ run2_jme_2017.toModify(
 ## - To be used in nanoAOD_customizeCommon() in nano_cff.py
 ###############################################################
 from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
-def nanoAOD_addDeepInfoAK4CHS(process,addDeepBTag,addDeepFlavour):
+def nanoAOD_addDeepInfoAK4CHS(process,addDeepBTag,addDeepFlavour, addParticleNetAK4):
     _btagDiscriminators=[]
     if addDeepBTag:
         print("Updating process to run DeepCSV btag")
@@ -327,6 +327,11 @@ def nanoAOD_addDeepInfoAK4CHS(process,addDeepBTag,addDeepFlavour):
     if addDeepFlavour:
         print("Updating process to run DeepFlavour btag")
         _btagDiscriminators += ['pfDeepFlavourJetTags:probb','pfDeepFlavourJetTags:probbb','pfDeepFlavourJetTags:problepb','pfDeepFlavourJetTags:probc']
+    if addParticleNetAK4:
+        print("Updating process to run ParticleNetAK4 before it's included in MiniAOD")
+        from RecoBTag.ONNXRuntime.pfParticleNetAK4_cff import _pfParticleNetAK4JetTagsAll as pfParticleNetAK4JetTagsAll
+        _btagDiscriminators += pfParticleNetAK4JetTagsAll
+
     if len(_btagDiscriminators)==0: return process
     print("Will recalculate the following discriminators: "+", ".join(_btagDiscriminators))
     updateJetCollection(
@@ -344,6 +349,7 @@ def nanoAOD_addDeepInfoAK4CHS(process,addDeepBTag,addDeepFlavour):
 nanoAOD_addDeepInfoAK4CHS_switch = cms.PSet(
     nanoAOD_addDeepBTag_switch = cms.untracked.bool(False),
     nanoAOD_addDeepFlavourTag_switch = cms.untracked.bool(False),
+    nanoAOD_addParticleNetAK4_switch = cms.untracked.bool(False),
 )
 
 ################################################
