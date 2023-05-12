@@ -131,6 +131,7 @@ offlineHLTSourceOnAOD = cms.Sequence(
     * susyMonitorHLT
     * b2gMonitorHLT
     * higgsMonitorHLT
+    * particleNetMonitoringHLT          # HIG: monitoring of HLT PNET taggers (incl. comparisons to Offline PNET)
     * smpMonitorHLT
     * topMonitorHLT
     * btagMonitorHLT 
