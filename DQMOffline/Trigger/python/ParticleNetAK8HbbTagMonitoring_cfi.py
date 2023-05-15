@@ -84,8 +84,8 @@ particleNetAK8HbbTagMonitoring = _particleNetJetTagMonitor.clone(
     jet2PNETscoreTransBinning2d = [],
     ## trigger for numerator and denominator
     numGenericTriggerEvent = dict(
-        hltPaths      = ["HLT_IsoMu50_AK8PFJet230_SoftDropMass40_PFAK8ParticleNetBB0p35_v*",
-                         "HLT_Ele50_CaloIdVT_GsfTrkIdT_AK8PFJet230_SoftDropMass40_PFAK8ParticleNetBB0p35_v*"],
+        hltPaths      = ["HLT_IsoMu50_AK8PFJet230_SoftDropMass40_PNetBB0p06_v*",
+                         "HLT_Ele50_CaloIdVT_GsfTrkIdT_AK8PFJet230_SoftDropMass40_PNetBB0p06_v*"],
         andOr         = False,
         andOrHlt      = True,
         #hltInputTag   = "TriggerResults::reHLT", ## when testing in the DQM workflow (https://twiki.cern.ch/twiki/bin/viewauth/CMS/HLTValidationAndDQM)

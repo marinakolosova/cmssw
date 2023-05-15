@@ -82,7 +82,7 @@ particleNetAK4BTagMonitoring = _particleNetJetTagMonitor.clone(
     jet2PNETscoreTransBinning2d = [0,0.15,0.30,0.45,0.60,0.75,1,1.5,2,2.5,3.25,6],
     ## trigger for numerator and denominator
     numGenericTriggerEvent = dict(
-        hltPaths      = ["HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_PFDiJet30_PFBTagParticleNet_2BTagSum0p65_v*"],
+        hltPaths      = ["HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_PFDiJet30_PNet2BTagMean0p50_v*"],
         andOr         = False,
         andOrHlt      = True,
         #hltInputTag   = "TriggerResults::reHLT", ## when testing in the DQM workflow (https://twiki.cern.ch/twiki/bin/viewauth/CMS/HLTValidationAndDQM)
