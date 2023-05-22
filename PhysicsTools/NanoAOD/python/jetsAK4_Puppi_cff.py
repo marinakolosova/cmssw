@@ -88,10 +88,12 @@ jetPuppiTable = simpleCandidateFlatTableProducer.clone(
         btagDeepFlavCvL = Var("?(bDiscriminator('pfDeepFlavourJetTags:probc')+bDiscriminator('pfDeepFlavourJetTags:probuds')+bDiscriminator('pfDeepFlavourJetTags:probg'))>0?bDiscriminator('pfDeepFlavourJetTags:probc')/(bDiscriminator('pfDeepFlavourJetTags:probc')+bDiscriminator('pfDeepFlavourJetTags:probuds')+bDiscriminator('pfDeepFlavourJetTags:probg')):-1",float,doc="DeepJet c vs uds+g discriminator",precision=10),
         btagDeepFlavCvB = Var("?(bDiscriminator('pfDeepFlavourJetTags:probc')+bDiscriminator('pfDeepFlavourJetTags:probb')+bDiscriminator('pfDeepFlavourJetTags:probbb')+bDiscriminator('pfDeepFlavourJetTags:problepb'))>0?bDiscriminator('pfDeepFlavourJetTags:probc')/(bDiscriminator('pfDeepFlavourJetTags:probc')+bDiscriminator('pfDeepFlavourJetTags:probb')+bDiscriminator('pfDeepFlavourJetTags:probbb')+bDiscriminator('pfDeepFlavourJetTags:problepb')):-1",float,doc="DeepJet c vs b+bb+lepb discriminator",precision=10),
         btagDeepFlavQG = Var("?(bDiscriminator('pfDeepFlavourJetTags:probg')+bDiscriminator('pfDeepFlavourJetTags:probuds'))>0?bDiscriminator('pfDeepFlavourJetTags:probg')/(bDiscriminator('pfDeepFlavourJetTags:probg')+bDiscriminator('pfDeepFlavourJetTags:probuds')):-1",float,doc="DeepJet g vs uds discriminator",precision=10),
-                         
-        # marina
-        btagPNetProbbb = Var("bDiscriminator('pfParticleNetAK4JetTags:probbb')", int,doc="Jet ID flag: bit2 is tight, bit3 is tightLepVeto"),
-        
+        btagPNetProb    = Var("bDiscriminator('pfParticleNetAK4JetTags:probb')", float, doc="ParticleNet probb variable", precision=10),
+        btagPNetProbbb  = Var("bDiscriminator('pfParticleNetAK4JetTags:probbb')", float, doc="ParticleNet probbb variable", precision=10),
+        btagPNetProbc   = Var("bDiscriminator('pfParticleNetAK4JetTags:probc')", float, doc="ParticleNet probc variable", precision=10),
+        btagPNetProbuds = Var("bDiscriminator('pfParticleNetAK4JetTags:probuds')", float, doc="ParticleNet probuds variable", precision=10),
+        btagPNetProbg   = Var("bDiscriminator('pfParticleNetAK4JetTags:probg')", float, doc="ParticleNet probg variable", precision=10),
+        btagPNetBvsAll  = Var("bDiscriminator('pfParticleNetAK4JetTags:probb')/(bDiscriminator('pfParticleNetAK4JetTags:probb')+bDiscriminator('pfParticleNetAK4JetTags:probc')+bDiscriminator('pfParticleNetAK4JetTags:probuds')+bDiscriminator('pfParticleNetAK4JetTags:probg'))", float, doc="ParticleNet b vs. udscg", precision=10),
         jetId = Var("userInt('tightId')*2+4*userInt('tightIdLepVeto')",int,doc="Jet ID flag: bit2 is tight, bit3 is tightLepVeto"),
         hfsigmaEtaEta = Var("userFloat('hfsigmaEtaEta')",float,doc="sigmaEtaEta for HF jets (noise discriminating variable)",precision=10),
         hfsigmaPhiPhi = Var("userFloat('hfsigmaPhiPhi')",float,doc="sigmaPhiPhi for HF jets (noise discriminating variable)",precision=10),
